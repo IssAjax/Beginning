@@ -7,7 +7,7 @@
 
 # Check to see if disk is attached, the script will only continue if the result passes  
 
-fdisk -l | grep /dev/loop0
+fdisk -l | grep {disk}
 
 result=$?
 
@@ -20,7 +20,7 @@ else
 fi 
 
 # See if partition is mounted, if the partition does not exist it will mount it 
-df -h | grep /dev/loop0
+df -h | grep {disk}
 
 
 result=$?
@@ -30,12 +30,12 @@ if [ $result -eq 0 ]; then
      
 else
     echo "Partition is not mounted Mounting"
-    mount /tmp/flash / 
+    mount {partition} {mounting_point} 
 fi 
 
 # See if the backup process is running, if it is the script will exit 
-sclock=/opt/microlite/backupedge/lists/simple_job/schedule.lck
-lock=/opt/microlite/backupedge/system/mnt/af0/fsp0/lck
+sclock={file_path}/schedule.lck
+lock={file_path}/lck
 ps -el | grep edge
 
 
@@ -64,7 +64,7 @@ else
         rm -f $lock
 
     else
-        echo "/opt/microlite/backupedge/system/mnt/af0/fsp0/lck does not exist"
+        echo "$lock does not exist"
 
     fi
 
