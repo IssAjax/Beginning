@@ -4,6 +4,10 @@
 #
 # Written By: Dantae Hopson 12/14/2022
 #
+# Need to add: 
+#   > logging
+#   > error handling and reading of original logfile.txt 
+#
 
 # Check to see if disk is attached, the script will only continue if the result passes  
 
